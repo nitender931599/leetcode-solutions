@@ -15,6 +15,7 @@ public:
             char element = st.top();
             st.pop();
             ans = ans + element;
+           // reverse(ans.begin(),ans.end());
         }
         reverse(ans.begin(),ans.end());
         return ans;
