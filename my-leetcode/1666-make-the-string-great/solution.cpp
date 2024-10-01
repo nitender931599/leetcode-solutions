@@ -14,7 +14,7 @@ public:
                 st.push(s[i]);
             }
         }
-        string ans;
+        string ans = "";
         while(!st.empty()){
             ans = st.top() + ans;
             st.pop();
