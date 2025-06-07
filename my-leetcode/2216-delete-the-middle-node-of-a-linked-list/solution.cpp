@@ -16,15 +16,65 @@ public:
         }
         ListNode* slow = head;
         ListNode* fast = head;
-        ListNode* p = NULL;
+        ListNode* prev = head;
         while(fast!=NULL && fast->next!=NULL){
-            p = slow;
+            prev = slow;
             slow = slow->next;
             fast = fast->next->next;
         }
-        p->next = slow->next;
-        delete slow;
+        prev->next = slow->next;
         return head;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // if(head == NULL || head->next == NULL){
+        //     return NULL;
+        // }
+        // ListNode* slow = head;
+        // ListNode* fast = head;
+        // ListNode* p = NULL;
+        // while(fast!=NULL && fast->next!=NULL){
+        //     p = slow;
+        //     slow = slow->next;
+        //     fast = fast->next->next;
+        // }
+        // p->next = slow->next;
+        // delete slow;
+        // return head;
 
     }
 };
