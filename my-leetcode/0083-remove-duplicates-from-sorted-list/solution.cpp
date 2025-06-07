@@ -17,15 +17,54 @@ public:
         ListNode* a = head;
         ListNode* b = head->next;
         while(b!=NULL){
-            while(b!=NULL && b->val == a->val){
+            while(b!=NULL && a->val == b->val){
                 b = b->next;
             }
             a->next = b;
             a = b;
             if(b!=NULL){
-            b = b->next;
-            }
+            b = b->next;}
         }
         return head;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+    //     if(head == NULL || head->next == NULL){
+    //         return head;
+    //     }
+    //     ListNode* a = head;
+    //     ListNode* b = head->next;
+    //     while(b!=NULL){
+    //         while(b!=NULL && b->val == a->val){
+    //             b = b->next;
+    //         }
+    //         a->next = b;
+    //         a = b;
+    //         if(b!=NULL){
+    //         b = b->next;
+    //         }
+    //     }
+    //     return head;
+    // }
 };
