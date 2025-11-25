@@ -1,45 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* merge(ListNode* a, ListNode* b) {
-        ListNode* c = new ListNode(100);
-        ListNode* temp = c;
-        while(a!=NULL && b!=NULL){
-            if(a->val<=b->val){
-                temp->next = a;
-                a = a->next;
-                temp = temp->next;
+    ListNode* merge(ListNode* list1, ListNode* list2){
+        ListNode* dummy = new ListNode(-1);
+        ListNode* temp = dummy;
+        while(list1!=NULL && list2!=NULL){
+            if(list1->val < list2->val){
+                temp->next = list1;
+                temp = list1;
+                list1 = list1->next;
             }
             else{
-                temp->next = b;
-                b = b->next;
-                temp = temp->next;
+                temp->next = list2;
+                temp = list2;
+                list2 = list2->next;
             }
         }
-        if(a==NULL){
-            temp->next = b;
+        if(list1!=NULL){
+            temp->next = list1;
         }
         else{
-            temp->next = a;
+            temp->next = list2;
         }
-        return c->next;
+        return dummy->next;
     }
+
+    ListNode* findmiddle(ListNode* head){
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while(fast!=NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
+    }
+
     ListNode* sortList(ListNode* head) {
         if(head == NULL || head->next == NULL){
             return head;
         }
-        ListNode* slow = head;
-        ListNode* fast = head;
-        while(fast->next!=NULL && fast->next->next!=NULL){
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        ListNode* a = head;
-        ListNode* b = slow->next;
-        slow->next = NULL;
+        ListNode* middle = findmiddle(head);
+        ListNode* right = middle->next;
+        middle->next = NULL;
+        ListNode* left = head;
 
-        a = sortList(a);
-        b = sortList(b);
-        ListNode* c = merge(a,b);
-        return c;
+        left = sortList(left);
+        right = sortList(right);
+        return merge(left, right);
     }
 };
