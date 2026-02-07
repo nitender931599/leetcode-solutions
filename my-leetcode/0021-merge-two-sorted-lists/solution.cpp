@@ -1,98 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* a, ListNode* b) {
-        ListNode* tempA = a;
-        ListNode* tempB = b;
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* tempa = list1;
+        ListNode* tempb = list2;
         ListNode* c = new ListNode(100);
-        ListNode* tempC = c;
-        while(tempA && tempB){
-            if(tempA->val<tempB->val){
-                tempC->next = tempA;
-                tempA = tempA->next;
-                tempC = tempC->next;
+        ListNode* tempc = c;
+        while(tempa!=NULL && tempb!=NULL){
+            if(tempa->val<tempb->val){
+                tempc->next = tempa;
+                tempa = tempa->next;
+                tempc = tempc->next;
             }
             else{
-                tempC->next = tempB;
-                tempB = tempB->next;
-                tempC = tempC->next;
+                tempc->next = tempb;
+                tempb = tempb->next;
+                tempc = tempc->next;
             }
         }
-        if(tempA==NULL){
-            tempC->next = tempB;
+        if(tempa==NULL){
+            tempc->next = tempb;
         }
         else{
-            tempC->next = tempA;
+            tempc->next = tempa;
         }
         return c->next;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // ListNode* c = new ListNode(100);
-        // ListNode* temp = c;
-        // while(a!=NULL && b!=NULL){
-        //     if(a->val<=b->val){
-        //         temp->next = a;
-        //         a = a->next;
-        //         temp = temp->next;
-        //     }
-        //     else{
-        //         temp->next = b;
-        //         b = b->next;
-        //         temp = temp->next;
-        //     }
-        // }
-        // if(a==NULL){
-        //     temp->next = b;
-        // }
-        // else{
-        //     temp->next = a;
-        // }
-        // return c->next;
     }
 };
