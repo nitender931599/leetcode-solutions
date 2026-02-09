@@ -16,12 +16,6 @@ public:
         while(left<=right){
             int mid = left + (right-left)/2;
             if(ans.size()%2==0){
-                // if(ans[mid]==ans[ans.length()/2]){
-                //     right = mid-1;
-                // }
-                // else{
-                //     left = mid+1;
-                // }
                 return (ans[mid]+ans[mid+1])/2.0;
             }
             else{
