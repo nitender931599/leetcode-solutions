@@ -1,13 +1,15 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int,vector<int>, greater<int>>pq;
-        for(int x : nums){
-            pq.push(x);
-            if(pq.size()>k){
-                pq.pop();
-            }
+        priority_queue<int>p;
+        for(int i=0;i<nums.size();i++){
+            p.push(nums[i]);
         }
-        return pq.top();
+        int largest;
+        while(k--){
+            largest = p.top();
+            p.pop();
+        }
+        return largest;
     }
 };
