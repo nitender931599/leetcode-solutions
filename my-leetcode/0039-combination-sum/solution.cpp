@@ -1,25 +1,25 @@
 class Solution {
 public:
 
-    void combine(int ind, int target, vector<int>&ds,vector<vector<int>>&ans, vector<int>&arr){
-        if(ind==arr.size()){
-            if(target==0){
-                ans.push_back(ds);
-            }
+    void helper(int index, vector<int>&candidates, vector<int>&temp, vector<vector<int>>&ans, int target){
+        if(target==0){
+            ans.push_back(temp);
             return;
         }
-        if(arr[ind]<=target){
-            ds.push_back(arr[ind]);
-            combine(ind,target-arr[ind],ds,ans,arr);
-            ds.pop_back();
+        if(candidates.size()==index || target<0){
+            return;
         }
-        combine(ind+1,target,ds,ans,arr);
+       
+        temp.push_back(candidates[index]);
+        helper(index,candidates,temp,ans,target-candidates[index]);
+        temp.pop_back();
+        helper(index+1,candidates,temp,ans,target);
     }
 
-    vector<vector<int>> combinationSum(vector<int>& arr, int target) {
-        vector<vector<int>> ans;
-        vector<int>ds;
-        combine(0,target,ds,ans,arr);
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int>temp;
+        vector<vector<int>>ans;
+        helper(0,candidates,temp,ans,target);
         return ans;
     }
 };
